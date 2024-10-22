@@ -62,3 +62,6 @@ def order_detail(request, order_id):
 
 class OrderListView(LoginRequiredMixin, generic.ListView):
     model = Order
+
+class AboutView(generic.ListView):
+    model = Payment
