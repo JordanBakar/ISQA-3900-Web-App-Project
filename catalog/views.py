@@ -65,3 +65,6 @@ class OrderListView(LoginRequiredMixin, generic.ListView):
 
 class AboutView(generic.ListView):
     model = Payment
+
+class ShoppingCartView(generic.ListView):
+    model = Payment
