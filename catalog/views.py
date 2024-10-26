@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 
 
 
+
 def index(request):
     """View function for home page of the site."""
     num_pizzas = Pizza.objects.all().count()
