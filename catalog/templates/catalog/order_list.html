@@ -3,4 +3,15 @@
 {% block content %}
 <h1>Welcome to The Flavor Lab Pizzeria</h1>
 <p>Order List</p>
+
+{% if orders %}
+    <ul>
+    {% for order in orders %}
+        <li>Order ID: {{ order.id }} | Total: ${{ order.total_amount }} | Status: {{ order.order_status }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No orders available.</p>
+{% endif %}
+
 {% endblock %}
