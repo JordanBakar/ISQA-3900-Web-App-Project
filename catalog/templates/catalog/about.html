@@ -3,4 +3,49 @@
 {% block content %}
 <h1>Welcome to The Flavor Lab Pizzeria</h1>
 <p>About Page</p>
+
+<div class="container">
+    <h1>About The Flavor Lab Pizzeria</h1>
+
+    <section class="mt-4">
+        <h2>Our Story</h2>
+        <p>
+            Welcome to The Flavor Lab Pizzeria, where we believe pizza is more than a meal—it's an experience!
+            We’re committed to crafting the most delicious, unique pizzas that delight every customer, with fresh
+            ingredients and creative flavors. From our humble beginnings to today, we've made it our mission to
+            combine quality ingredients with innovative techniques.
+        </p>
+    </section>
+
+    <section class="mt-4">
+        <h2>How to Order</h2>
+        <p>
+            Ordering from The Flavor Lab Pizzeria is simple and convenient:
+        </p>
+        <ul>
+            <li>Visit our <a href="{% url 'index' %}">Home Page</a> and browse our menu to see our signature pizzas.</li>
+            <li>Add your favorite pizzas to your shopping cart by selecting the size and quantity.</li>
+            <li>Go to the <a href="#">Shopping Cart</a> page to review your order.</li>
+            <li>Proceed to checkout and complete your payment securely.</li>
+        </ul>
+        <p>
+            Once your order is placed, our team will start preparing your pizza with care, and it will be ready
+            for pick-up or delivery in no time!
+        </p>
+    </section>
+
+    <section class="mt-4">
+        <h2>Why Choose Us?</h2>
+        <p>
+            At The Flavor Lab Pizzeria, we pride ourselves on quality and customer satisfaction:
+        </p>
+        <ul>
+            <li>Fresh and high-quality ingredients sourced from trusted suppliers.</li>
+            <li>A diverse menu featuring classic flavors and creative options.</li>
+            <li>Convenient online ordering, allowing you to order from the comfort of your home.</li>
+            <li>Exceptional customer service, ensuring a delightful experience every time.</li>
+        </ul>
+    </section>
+</div>
+
 {% endblock %}
