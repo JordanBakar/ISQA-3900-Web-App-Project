@@ -1,14 +1,13 @@
-from .models import Pizza, Order, OrderDetail, Employee, Member, Guest, Payment
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from django.contrib import messages
-from django.shortcuts import redirect
+from .models import Pizza, Order, OrderDetail, Employee, Member, Guest, Payment
 
 
-
-
+# Homepage
 def index(request):
     """View function for home page of the site."""
     num_pizzas = Pizza.objects.all().count()
@@ -23,49 +22,109 @@ def index(request):
         'num_members': num_members,
     }
 
-    # Render the HTML template index.html with the data in the context variable
     return render(request, 'catalog/index.html', context=context)
 
 
-def pizza_list(request):
-    """View function to display a list of pizzas."""
-    pizzas = Pizza.objects.all()
+# Pizza
+class PizzaListView(generic.ListView):
+    model = Pizza
+    template_name = 'catalog/pizza_list.html'
+    context_object_name = 'pizzas'
 
-    context = {
-        'pizzas': pizzas,
-    }
+class PizzaDetailView(generic.DetailView):
+    model = Pizza
+    template_name = 'catalog/pizza_detail.html'
 
-    return render(request, 'pizza_list.html', context=context)
+class PizzaCreateView(LoginRequiredMixin, CreateView):
+    model = Pizza
+    fields = ['name', 'description', 'price', 'size']
+    template_name = 'catalog/pizza_form.html'
+
+class PizzaUpdateView(LoginRequiredMixin, UpdateView):
+    model = Pizza
+    fields = ['name', 'description', 'price', 'size']
+    template_name = 'catalog/pizza_form.html'
+
+class PizzaDeleteView(LoginRequiredMixin, DeleteView):
+    model = Pizza
+    template_name = 'catalog/pizza_confirm_delete.html'
+    success_url = reverse_lazy('pizza_list')
 
 
-def order_list(request):
-    """View function to display a list of orders."""
-    orders = Order.objects.all()
-
-    context = {
-        'orders': orders,
-    }
-
-    return render(request, 'catalog/order_list.html', context=context)
-
-
-def order_detail(request, order_id):
-    """View function to display the details of a specific order."""
-    order = Order.objects.get(id=order_id)
-    order_details = OrderDetail.objects.filter(order=order)
-
-    context = {
-        'order': order,
-        'order_details': order_details,
-    }
-
-    return render(request, 'order_detail.html', context=context)
-
+# Order
 class OrderListView(LoginRequiredMixin, generic.ListView):
     model = Order
+    template_name = 'catalog/order_list.html'
+    context_object_name = 'orders'
 
-class AboutView(generic.ListView):
-    model = Payment
+class OrderDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Order
+    template_name = 'catalog/order_detail.html'
 
-class ShoppingCartView(generic.ListView):
-    model = Payment
+class OrderCreateView(LoginRequiredMixin, CreateView):
+    model = Order
+    fields = ['member', 'guest', 'employee', 'total_amount', 'order_status']
+    template_name = 'catalog/order_form.html'
+
+class OrderUpdateView(LoginRequiredMixin, UpdateView):
+    model = Order
+    fields = ['member', 'guest', 'employee', 'total_amount', 'order_status']
+    template_name = 'catalog/order_form.html'
+
+class OrderDeleteView(LoginRequiredMixin, DeleteView):
+    model = Order
+    template_name = 'catalog/order_confirm_delete.html'
+    success_url = reverse_lazy('order_list')
+
+
+# Member
+class MemberListView(LoginRequiredMixin, generic.ListView):
+    model = Member
+    template_name = 'catalog/member_list.html'
+    context_object_name = 'members'
+
+class MemberDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Member
+    template_name = 'catalog/member_detail.html'
+
+class MemberCreateView(LoginRequiredMixin, CreateView):
+    model = Member
+    fields = ['user', 'phone_number', 'street_address', 'city', 'state', 'zip_code']
+    template_name = 'catalog/member_form.html'
+
+class MemberUpdateView(LoginRequiredMixin, UpdateView):
+    model = Member
+    fields = ['user', 'phone_number', 'street_address', 'city', 'state', 'zip_code']
+    template_name = 'catalog/member_form.html'
+
+class MemberDeleteView(LoginRequiredMixin, DeleteView):
+    model = Member
+    template_name = 'catalog/member_confirm_delete.html'
+    success_url = reverse_lazy('member_list')
+
+
+# Cart
+class ShoppingCartView(generic.TemplateView):
+    template_name = 'catalog/cart.html'
+
+def add_to_cart(request, pizza_id):
+    """Add a pizza to the shopping cart stored in the session."""
+    cart = request.session.get('cart', {})
+    cart[pizza_id] = cart.get(pizza_id, 0) + 1
+    request.session['cart'] = cart
+    messages.success(request, "Pizza added to cart!")
+    return redirect('cart')
+
+def remove_from_cart(request, pizza_id):
+    """Remove a pizza from the shopping cart stored in the session."""
+    cart = request.session.get('cart', {})
+    if pizza_id in cart:
+        del cart[pizza_id]
+        request.session['cart'] = cart
+        messages.success(request, "Pizza removed from cart.")
+    return redirect('cart')
+
+
+# Static
+class AboutView(generic.TemplateView):
+    template_name = 'catalog/about.html'

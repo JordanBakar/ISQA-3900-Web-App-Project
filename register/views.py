@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm
 from django.contrib.auth.models import User, Group
 
-# Create your views here.
 def register(request):
     """View function for user registration."""
     if request.method == "POST":
@@ -12,9 +11,15 @@ def register(request):
             uname = form.cleaned_data['username']
             form.save()
 
-            # Get the newly created user and add them to the 'Member' group
+            # Get the newly created user
             user = User.objects.get(username=uname)
-            member_group = Group.objects.get(name='Member')  # Ensure 'Member' group exists in the admin panel
+
+            # Ensure the 'Member' group exists, create it if it doesn't
+            member_group, created = Group.objects.get_or_create(name='Member')
+            if created:
+                print("Created the 'Member' group.")
+
+            # Add the user to the 'Member' group
             user.groups.add(member_group)
             user.save()
 

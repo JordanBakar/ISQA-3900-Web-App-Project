@@ -1,8 +1,13 @@
 {% extends "catalog/base.html" %}
+{% load static %}  <!-- Load static files -->
 
 {% block title %}The Flavor Lab Pizzeria{% endblock %}
 
 {% block content %}
-<h1>Welcome to The Flavor Lab Pizzeria</h1>
-<p>Fresh Pizza Since 2024</p>
+<div class="text-center">
+    <h1>Welcome to The Flavor Lab Pizzeria</h1>
+    <!-- Logo Image -->
+    <img src="{% static 'images/logo.png' %}" alt="The Flavor Lab Logo" class="logo-image">
+    <p>Fresh Pizza Since 2024</p>
+</div>
 {% endblock %}
