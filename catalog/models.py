@@ -6,7 +6,6 @@ class Pizza(models.Model):
     name = models.CharField(max_length=100, help_text="Enter the name of the pizza")
     description = models.CharField(max_length=250, help_text="Enter the description of the pizza")
     price = models.DecimalField(max_digits=5, decimal_places=2, help_text="Enter the price of the pizza")
-    size = models.CharField(max_length=15, help_text="Enter the size of the pizza (e.g., Small, Medium, Large)")
 
     def __str__(self):
         return self.name

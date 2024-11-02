@@ -8,62 +8,71 @@ h1  {
  font-weight: normal;
  line-height: 0.5;
  text-align: left;
- color: #ff0033;
+ color: #02979d;
  }
 
-.about-container {
+
+/*************************************
+INDEX
+**************************************/
+/* Index Section Styling */
+.index-section {
     display: flex;
-    align-items: center;
+    align-items: flex-start;  /* Align content box closer to the top */
     justify-content: center;
-    padding: 50px;
-    background-color: #f5f5f0;
-    height: 100vh;
+    min-height: 80vh;
+    padding-top: 60px;
+    background-color: #0b898e;
 }
 
-.about-logo {
-    flex: 1;
+.index-content {
     text-align: center;
+    max-width: 800px;
+    background-color: #cacaca;  /* Soft gray background */
+    padding: 50px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;  /* Moves the box closer to the top */
 }
 
-.logo-image {
-    width: 200px;
+/* Logo Styling */
+.index-content .logo-image {
+    max-width: 300px;
     height: auto;
+    margin-bottom: 25px;
 }
 
-.about-content {
-    flex: 1;
-    max-width: 400px;
-    text-align: left;
+/* Heading and Subheading */
+.index-content h1 {
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
+    color: #0b888d;
+    font-size: 2.4em;
+    margin-bottom: 10px;
 }
 
-.about-content h2 {
-    font-family: 'Georgia', serif;
-    font-size: 24px;
-    font-weight: bold;
-    border-bottom: 1px solid #333;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+.index-content .subheading {
+    font-size: 1.2em;
+    font-style: italic;
+    color: #555555;
+    margin-bottom: 25px;
 }
 
-.about-content p {
-    font-size: 18px;
-    color: #333;
-    line-height: 1.6;
-}
-
-.social-icons {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.social-icons a {
-    font-size: 24px;
-    color: #333;
+/* CTA Button Styling */
+.btn-primary {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    color: #ffffff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
-.social-icons a:hover {
-    color: #ff5252; /* Change to a color that matches your brand */
+.btn-primary:hover {
+    background-color: #2980b9;
 }
+
+
