@@ -1,208 +1,81 @@
 /*************************************
-GENERAL STYLING
+HEADING
 **************************************/
-body {
-    background-color: #f2f2eb; /* Light beige background */
-    font-family: 'Open Sans', sans-serif;
-    color: #333; /* Dark gray text */
-}
+
+
+
+h1  {
+ font-family: 'Open Sans SemiBold', sans-serif;
+ margin: 10px 0;
+ font-size: 1.75em;
+ font-weight: normal;
+ line-height: 0.5;
+ text-align: left;
+ color: #02979d;
+ }
+
 
 /*************************************
-NAVBAR AND LOGO
+INDEX
 **************************************/
-.navbar-brand img {
-    max-height: 50px; /* Adjust logo height */
-    margin-right: 10px;
-}
-
-h1 {
-    font-family: 'Open Sans SemiBold', sans-serif;
-    color: #02979d; /* Aqua color */
-    font-size: 2em;
-    text-align: center;
-    margin-top: 20px;
-    line-height: 1.2;
-}
-
-/*************************************
-ABOUT US SECTION
-**************************************/
-.about-content {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 600px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.about-content h2 {
-    color: #02979d; /* Same aqua color as header */
-    font-size: 1.5em;
-    margin-bottom: 15px;
-}
-
-.about-content p {
-    font-size: 1em;
-    line-height: 1.5;
-    color: #666;
-}
-
-/* Social Media Icons */
-.social-icons {
+/* Index Section Styling */
+.index-section {
     display: flex;
+    align-items: flex-start;  /* Align content box closer to the top */
     justify-content: center;
-    gap: 15px;
-    margin-top: 10px;
+    min-height: 80vh;
+    padding-top: 60px;
+    background-color: #0b898e;
 }
 
-.social-icons a {
-    color: #333; /* Dark icon color */
-    font-size: 1.5em;
-    transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-    color: #02979d; /* Aqua color on hover */
-}
-
-/*************************************
-HOMEPAGE BUTTONS
-**************************************/
-.homepage-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.homepage-buttons button {
-    width: 100%;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    color: #02979d;
-    background-color: #f2f2eb;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.homepage-buttons button:hover {
-    background-color: #02979d;
-    color: #ffffff;
-}
-
-/*************************************
-FORM PAGES (Login, Register, Reset Password)
-**************************************/
-.form-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-container h2 {
-    color: #02979d;
+.index-content {
     text-align: center;
-    font-size: 1.5em;
-    margin-bottom: 20px;
+    max-width: 800px;
+    background-color: #cacaca;  /* Soft gray background */
+    padding: 50px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;  /* Moves the box closer to the top */
 }
 
-.form-container input[type="text"],
-.form-container input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+/* Logo Styling */
+.index-content .logo-image {
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 25px;
 }
 
-.form-container button {
-    width: 100%;
-    padding: 10px;
+/* Heading and Subheading */
+.index-content h1 {
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
+    color: #0b888d;
+    font-size: 2.4em;
+    margin-bottom: 10px;
+}
+
+.index-content .subheading {
+    font-size: 1.2em;
+    font-style: italic;
+    color: #555555;
+    margin-bottom: 25px;
+}
+
+/* CTA Button Styling */
+.btn-primary {
+    display: inline-block;
+    padding: 12px 25px;
     font-size: 1.1em;
     color: #ffffff;
-    background-color: #02979d;
+    background-color: #3498db;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    text-decoration: none;
     transition: background-color 0.3s ease;
 }
 
-.form-container button:hover {
-    background-color: #026d76;
+.btn-primary:hover {
+    background-color: #2980b9;
 }
 
-/*************************************
-ORDER PAGE
-**************************************/
-.order-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    text-align: center;
-}
 
-.order-grid img {
-    max-width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.order-grid button {
-    margin-top: 10px;
-    padding: 8px 12px;
-    background-color: #ff6666;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.order-grid button:hover {
-    background-color: #cc5555;
-}
-
-/*************************************
-SHOPPING CART
-**************************************/
-.shopping-cart {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.shopping-cart h2 {
-    color: #02979d;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-}
-
-.cart-total {
-    text-align: right;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #02979d;
-    margin-top: 15px;
-}
