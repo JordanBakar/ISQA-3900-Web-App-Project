@@ -1,13 +1,18 @@
 {% extends "catalog/base.html" %}
 {% load static %}  <!-- Load static files -->
+
 <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
-
 {% block content %}
-<h1>Welcome to The Flavor Lab Pizzeria</h1>
+<div class="hero-section text-center" style="padding: 50px 20px; background-color: #c8c8c8;">
+    <img src="{% static 'images/FlavorLabLogo.png' %}" alt="The Flavor Lab Logo" class="logo-image" style="width: 150px; height: auto; margin-bottom: 20px;">
+    <h1 style="text-align: center ">Welcome to The Flavor Lab Pizzeria</h1>
+    <p class="lead">Serving handcrafted pizzas since 2024.</p>
+</div>
 
-<div class="container">
-    <section class="mt-4">
+<!-- About Content -->
+<div class="container mt-5">
+    <section class="about-section" style="padding: 30px; background-color: #ffffff; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0,0,0,0.1);">
         <h2>Our Story</h2>
         <p>
             Welcome to The Flavor Lab Pizzeria, where we believe pizza is more than a meal—it's an experience!
@@ -17,16 +22,16 @@
         </p>
     </section>
 
-    <section class="mt-4">
+    <section class="order-section mt-5" style="padding: 30px; background-color: #f5f5f5; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0,0,0,0.1);">
         <h2>How to Order</h2>
         <p>
             Ordering from The Flavor Lab Pizzeria is simple and convenient:
         </p>
-        <ul>
-            <li>Visit our <a href="{% url 'index' %}">Home Page</a> and browse our menu to see our signature pizzas.</li>
-            <li>Add your favorite pizzas to your shopping cart by selecting the size and quantity.</li>
-            <li>Go to the <a href="{% url 'cart' %}">Shopping Cart</a> page to review your order.</li>
-            <li>Proceed to checkout and complete your payment securely.</li>
+        <ul class="order-steps" style="list-style: none; padding: 0;">
+            <li><span>🍕</span> Visit our <a href="{% url 'index' %}">Home Page</a> to browse our menu of signature pizzas.</li>
+            <li><span>🛒</span> Add your favorite pizzas to your shopping cart by selecting the size and quantity.</li>
+            <li><span>📝</span> Go to the <a href="{% url 'cart' %}">Shopping Cart</a> page to review your order.</li>
+            <li><span>💳</span> Proceed to checkout and complete your payment securely.</li>
         </ul>
         <p>
             Once your order is placed, our team will start preparing your pizza with care, and it will be ready
@@ -34,16 +39,16 @@
         </p>
     </section>
 
-    <section class="mt-4">
+    <section class="choose-us-section mt-5 mb-5" style="padding: 30px; background-color: #ffffff; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0,0,0,0.1);">
         <h2>Why Choose Us?</h2>
         <p>
             At The Flavor Lab Pizzeria, we pride ourselves on quality and customer satisfaction:
         </p>
-        <ul>
-            <li>Fresh and high-quality ingredients sourced from trusted suppliers.</li>
-            <li>A diverse menu featuring classic flavors and creative options.</li>
-            <li>Convenient online ordering, allowing you to order from the comfort of your home.</li>
-            <li>Exceptional customer service, ensuring a delightful experience every time.</li>
+        <ul style="list-style: none; padding: 0;">
+            <li><span>🌱</span> Fresh and high-quality ingredients sourced from trusted suppliers.</li>
+            <li><span>🍕</span> A diverse menu featuring classic flavors and creative options.</li>
+            <li><span>📱</span> Convenient online ordering, allowing you to order from the comfort of your home.</li>
+            <li><span>🤝</span> Exceptional customer service, ensuring a delightful experience every time.</li>
         </ul>
     </section>
 </div>
