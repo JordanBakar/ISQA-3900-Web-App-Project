@@ -1,17 +1,27 @@
 {% extends "catalog/base.html" %}
 
+{% block title %}Pizza Menu{% endblock %}
+
 {% block content %}
-<h1>Welcome to The Flavor Lab Pizzeria</h1>
-<p>Order List</p>
-
-{% if orders %}
-    <ul>
-    {% for order in orders %}
-        <li>Order ID: {{ order.id }} | Total: ${{ order.total_amount }} | Status: {{ order.order_status }}</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No orders available.</p>
-{% endif %}
-
+<div class="container">
+    <h1 class="text-center">Our Menu</h1>
+    <div class="row">
+        {% for pizza in pizzas %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img src="{% static 'img/default-pizza.jpg' %}" class="card-img-top" alt="{{ pizza.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ pizza.name }}</h5>
+                    <p class="card-text">{{ pizza.description }}</p>
+                    <p class="card-text"><strong>Price:</strong> ${{ pizza.price }}</p>
+                    <form action="{% url 'add_to_cart' pizza.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-block">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

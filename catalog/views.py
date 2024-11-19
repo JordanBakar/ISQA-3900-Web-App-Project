@@ -128,3 +128,17 @@ def remove_from_cart(request, pizza_id):
 # Static
 class AboutView(generic.TemplateView):
     template_name = 'catalog/about.html'
+
+#Order_List
+from .models import Pizza
+from django.shortcuts import render
+
+def order_list(request):
+    """View function to display the menu with pizza options."""
+    pizzas = Pizza.objects.all()  # Fetch all pizzas from the database
+
+    context = {
+        'pizzas': pizzas,
+    }
+
+    return render(request, 'catalog/order_list.html', context=context)

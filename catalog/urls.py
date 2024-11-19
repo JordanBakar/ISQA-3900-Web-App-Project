@@ -34,4 +34,7 @@ urlpatterns = [
 
     # Static
     path('about/', TemplateView.as_view(template_name='catalog/about.html'), name='about'),  # Static About page
+
+    #Order_List
+    path('menu/', views.order_list, name='order_list'),
 ]
