@@ -6,6 +6,8 @@ class Pizza(models.Model):
     name = models.CharField(max_length=100, help_text="Enter the name of the pizza")
     description = models.CharField(max_length=250, help_text="Enter the description of the pizza")
     price = models.DecimalField(max_digits=5, decimal_places=2, help_text="Enter the price of the pizza")
+    image = models.ImageField(upload_to='pizza_images/', null=True, blank=True, help_text="Upload an image of the pizza")
+
 
     def __str__(self):
         return self.name

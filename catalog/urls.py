@@ -28,13 +28,10 @@ urlpatterns = [
     path('member/<int:pk>/delete/', views.MemberDeleteView.as_view(), name='member_delete'),  # Delete a member by ID
 
     # Cart
-    path('cart/', views.ShoppingCartView.as_view(template_name='catalog/cart.html'), name='cart'),  # View cart contents
+    path('cart/', views.cart_view, name='cart'),  # View cart contents
     path('cart/add/<int:pizza_id>/', views.add_to_cart, name='add_to_cart'),  # Add a pizza to the cart by pizza ID
     path('cart/remove/<int:pizza_id>/', views.remove_from_cart, name='remove_from_cart'),  # Remove a pizza from the cart by pizza ID
 
     # Static
     path('about/', TemplateView.as_view(template_name='catalog/about.html'), name='about'),  # Static About page
-
-    #Order_List
-    path('menu/', views.order_list, name='order_list'),
 ]

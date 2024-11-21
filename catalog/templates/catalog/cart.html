@@ -1,22 +1,41 @@
 {% extends "catalog/base.html" %}
 
+{% block title %}Shopping Cart | The Flavor Lab Pizzeria{% endblock %}
+
 {% block content %}
-<h1>Welcome to The Flavor Lab Pizzeria</h1>
-<p>Fresh Pizza Since 2024</p>
-
-{% if cart_items %}
-    <ul>
-    {% for item in cart_items %}
-        <li>{{ item.pizza.name }} ({{ item.quantity }}) - ${{ item.pizza.price }}</li>
-    {% endfor %}
-    </ul>
-    <p>Total: ${{ total_price }}</p>
-    <form action="{% url 'checkout' %}" method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-success">Checkout</button>
-    </form>
-{% else %}
-    <p>Your cart is empty.</p>
-{% endif %}
-
+<div class="container mt-5">
+    <h1>Your Cart</h1>
+    {% if cart_items %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Pizza</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ item.pizza.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.pizza.price }}</td>
+                <td>${{ item.subtotal }}</td>
+            <td>
+                <a href="{% url 'add_to_cart' item.pizza.pizza_id %}" class="btn btn-sm btn-success">+</a>
+                <a href="{% url 'remove_from_cart' item.pizza.pizza_id %}" class="btn btn-sm btn-danger">-</a>
+            </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Total: ${{ total }}</h3>
+    <a href="{% url 'order_create' %}" class="btn btn-primary">Proceed to Checkout</a>
+    {% else %}
+        <p>Your cart is empty.</p>
+        <p><a href="{% url 'pizza_list' %}">Browse our menu</a> to add pizzas.</p>
+    {% endif %}
+</div>
 {% endblock %}
