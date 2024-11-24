@@ -35,24 +35,45 @@ class PizzaDetailView(generic.DetailView):
 
 
 class PizzaCreateView(LoginRequiredMixin, CreateView):
-    """Allows creation of a new pizza."""
+    """Allows creation of a new pizza, restricted to employees or staff members."""
     model = Pizza
-    fields = ['name', 'description', 'price']
+    fields = ['name', 'description', 'price', 'image']
     template_name = 'catalog/pizza_form.html'
+    success_url = reverse_lazy('pizza_list')
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            messages.error(request, "You do not have permission to add pizzas.")
+            return redirect('pizza_list')
+        return super().dispatch(request, *args, **kwargs)
+
 
 
 class PizzaUpdateView(LoginRequiredMixin, UpdateView):
-    """Allows editing an existing pizza."""
+    """Allows employees to update an existing pizza."""
     model = Pizza
-    fields = ['name', 'description', 'price']
+    fields = ['name', 'description', 'price', 'image']
     template_name = 'catalog/pizza_form.html'
+    success_url = reverse_lazy('pizza_list')
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            messages.error(request, "You do not have permission to edit pizzas.")
+            return redirect('pizza_list')
+        return super().dispatch(request, *args, **kwargs)
 
 
 class PizzaDeleteView(LoginRequiredMixin, DeleteView):
-    """Allows deletion of a pizza."""
+    """Allows employees to delete an existing pizza."""
     model = Pizza
     template_name = 'catalog/pizza_confirm_delete.html'
     success_url = reverse_lazy('pizza_list')
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            messages.error(request, "You do not have permission to delete pizzas.")
+            return redirect('pizza_list')
+        return super().dispatch(request, *args, **kwargs)
 
 
 # Order Views
