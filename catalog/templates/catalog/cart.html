@@ -23,19 +23,22 @@
                 <td>{{ item.quantity }}</td>
                 <td>${{ item.pizza.price }}</td>
                 <td>${{ item.subtotal }}</td>
-            <td>
-                <a href="{% url 'add_to_cart' item.pizza.pizza_id %}" class="btn btn-sm btn-success">+</a>
-                <a href="{% url 'remove_from_cart' item.pizza.pizza_id %}" class="btn btn-sm btn-danger">-</a>
-            </td>
+                <td>
+                    <a href="{% url 'add_to_cart' item.pizza.pizza_id %}" class="btn btn-sm btn-success">+</a>
+                    <a href="{% url 'remove_from_cart' item.pizza.pizza_id %}" class="btn btn-sm btn-danger">-</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
     <h3>Total: ${{ total }}</h3>
-    <a href="{% url 'order_create' %}" class="btn btn-primary">Proceed to Checkout</a>
+    <div class="d-flex justify-content-between mt-4">
+        <a href="{% url 'pizza_list' %}" class="btn btn-outline-secondary">Back to Menu</a>
+        <a href="{% url 'order_create' %}" class="btn btn-primary">Proceed to Checkout</a>
+    </div>
     {% else %}
         <p>Your cart is empty.</p>
-        <p><a href="{% url 'pizza_list' %}">Browse our menu</a> to add pizzas.</p>
+        <p><a href="{% url 'pizza_list' %}" class="btn btn-outline-secondary">Browse our menu</a> to add pizzas.</p>
     {% endif %}
 </div>
 {% endblock %}

@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "catalog/base.html" %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}{{ pizza.name }} Details | The Flavor Lab Pizzeria{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <!-- Pizza Image -->
+        <div class="col-md-6">
+            {% if pizza.image %}
+                <img src="{{ pizza.image.url }}" class="img-fluid rounded shadow" alt="{{ pizza.name }}">
+            {% else %}
+                <img src="{% static 'images/pizza_placeholder.png' %}" class="img-fluid rounded shadow" alt="{{ pizza.name }}">
+            {% endif %}
+        </div>
+
+        <!-- Pizza Details -->
+        <div class="col-md-6">
+            <h1>{{ pizza.name }}</h1>
+            <p class="text-muted">{{ pizza.description }}</p>
+            <p><strong>Price:</strong> ${{ pizza.price }}</p>
+
+            <!-- Add to Cart Button -->
+            <a href="{% url 'add_to_cart' pizza.pizza_id %}" class="btn btn-primary btn-lg mt-3">Add to Cart</a>
+
+            <!-- Edit Pizza Details (Visible Only to Employees) -->
+            {% if user.is_authenticated and user.is_employee %}
+                <a href="{% url 'pizza_update' pizza.pizza_id %}" class="btn btn-outline-warning btn-lg mt-3 ms-2">Edit Pizza</a>
+                <a href="{% url 'pizza_delete' pizza.pizza_id %}" class="btn btn-outline-danger btn-lg mt-3 ms-2">Delete Pizza</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
