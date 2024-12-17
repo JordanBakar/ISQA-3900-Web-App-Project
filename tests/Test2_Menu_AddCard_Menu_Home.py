@@ -1,4 +1,4 @@
-# Clicks 'About' then 'Menu' then 'Add to Cart'
+# Clicks 'Menu' then 'Add to Cart' 'Back to Menu' then 'Home'
 # application
 
 import unittest
@@ -29,15 +29,18 @@ class ll_ATS(unittest.TestCase):
         time.sleep(3)
         elem.send_keys(Keys.RETURN)
         driver.get("http://127.0.0.1:8000")
-        time.sleep(3)
-        # find 'About' and click it
-        driver.find_element(By.XPATH, "//a[contains(., 'About')]").click()
         time.sleep(1)
-        # find 'Menu' and click it
+        # find 'About' and click it
         driver.find_element(By.XPATH, "//a[contains(., 'Menu')]").click()
         time.sleep(1)
         # find 'Add to Cart' and click it
         driver.find_element(By.XPATH, "//a[contains(., 'Add to Cart')]").click()
+        time.sleep(1)
+        # find 'Back to Menu' and click it
+        driver.find_element(By.XPATH, "//a[contains(., 'Back to Menu')]").click()
+        time.sleep(1)
+        # find 'Home' and click it
+        driver.find_element(By.XPATH, "//a[contains(., 'Home')]").click()
 
         time.sleep(2)
 

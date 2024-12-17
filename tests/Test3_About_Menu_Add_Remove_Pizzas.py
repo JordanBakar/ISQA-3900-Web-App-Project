@@ -1,4 +1,4 @@
-# Clicks 'About' then 'Menu' then 'Add to Cart'
+# Clicks 'About' then 'Menu' then 'Add to Cart' then add and remove pizzas
 # application
 
 import unittest
@@ -38,7 +38,21 @@ class ll_ATS(unittest.TestCase):
         time.sleep(1)
         # find 'Add to Cart' and click it
         driver.find_element(By.XPATH, "//a[contains(., 'Add to Cart')]").click()
-
+        time.sleep(1)
+        # increase pizza quantity by 1
+        driver.find_element(By.XPATH, "//a[contains(., '+')]").click()
+        time.sleep(1)
+        # increase pizza quantity by 1
+        driver.find_element(By.XPATH, "//a[contains(., '+')]").click()
+        time.sleep(1)
+        # decrease pizza quantity by 1
+        driver.find_element(By.XPATH, "//a[contains(., '-')]").click()
+        time.sleep(1)
+        # decrease pizza quantity by 1
+        driver.find_element(By.XPATH, "//a[contains(., '-')]").click()
+        time.sleep(1)
+        # decrease pizza quantity by 1
+        driver.find_element(By.XPATH, "//a[contains(., '-')]").click()
         time.sleep(2)
 
     def tearDown(self):
