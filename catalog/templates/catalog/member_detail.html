@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base_generic.html" %}
 
-</body>
-</html>
+{% block content %}
+<h1>Member Details</h1>
+<p><strong>Name:</strong> {{ member.user.first_name }} {{ member.user.last_name }}</p>
+<p><strong>Email:</strong> {{ member.user.email }}</p>
+<p><strong>Phone Number:</strong> {{ member.phone_number }}</p>
+<p><strong>Address:</strong> {{ member.street_address }}, {{ member.city }}, {{ member.state }}, {{ member.zip_code }}</p>
+<a href="{% url 'member_list' %}" class="btn btn-secondary">Back to Member List</a>
+{% endblock %}

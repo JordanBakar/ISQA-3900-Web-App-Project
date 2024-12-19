@@ -27,6 +27,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(help_text='Enter the name of the pizza', max_length=100)),
                 ('description', models.CharField(help_text='Enter the description of the pizza', max_length=250)),
                 ('price', models.DecimalField(decimal_places=2, help_text='Enter the price of the pizza', max_digits=5)),
+                ('image', models.ImageField(upload_to='pizza_images/', null=True, blank=True, default='pizza_images/default.png', help_text='Upload an image of the pizza')),
                 ('size', models.CharField(help_text='Enter the size of the pizza (e.g., Small, Medium, Large)', max_length=15)),
             ],
         ),
